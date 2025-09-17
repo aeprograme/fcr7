@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>FIFA 26 Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background: url('FC26-UECover-4x3.avif') no-repeat center center/cover;
+    }
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="title" >  CR7 In FIFA 26 قادمة قريباً 🎮🔥</div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+  <script>
+    // تاريخ نزول اللعبة
+    const releaseDate = new Date("Dec 1, 2025 00:00:00").getTime();
+
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = releaseDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "اللعبة نزلت ✅";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days} يوم : ${hours} ساعة : ${minutes} دقيقة : ${seconds} ثانية`
+    }, 1000);
+  </script>
+</body>
+</html>
